@@ -1,25 +1,20 @@
 def max_profit array
-
-  hash = Hash.new
-
-  i = 0
-
-  array.each do |j|
-    hash[i] = j
-    i += 1
-  end
+  
+  prices_index_by_day = array.map.with_index do |price, index|
+    [index, price]
+  end.to_h
 
   # produces a hash where the key is the day number and the hash
   # is the stock price on that day
 
-  day_combinations = hash.keys.combination(2)
+  day_combinations = prices_index_by_day.keys.combination(2)
 
   # produces an array with all possible buy/sell day combinations
 
   hash_new = Hash.new
 
   day_combinations.each do |k|
-    hash_new[hash[k[1]]-hash[k[0]]] = k 
+    hash_new[prices_index_by_day[k[1]]- prices_index_by_day[k[0]]] = k 
   end
 
   # produces a hash where each key is the profit and 

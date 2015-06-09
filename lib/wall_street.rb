@@ -19,7 +19,6 @@ def max_profit array
   hash_new = Hash.new
 
   day_combinations.each do |k|
-
     hash_new[hash[k[1]]-hash[k[0]]] = k 
   end
 

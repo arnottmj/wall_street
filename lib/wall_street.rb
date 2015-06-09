@@ -1,16 +1,3 @@
-# def max_profit array
-
-#   method = array.combination(2).map {|i| i + [i[1]-i[0]]}.sort_by {|j| j[2]}.last
-
-#   buy_day = array.index(method[0])
-#   sell_day = array.index(method[1])
-#   profit = array[2]
-
-#   return ["buy_day: #{buy_day}", "sell_day: #{sell_day}" ]
-
-# end
-
-
 def max_profit array
 
   hash = Hash.new
@@ -22,18 +9,30 @@ def max_profit array
     i += 1
   end
 
+  # produces a hash where the key is the day number and the hash
+  # is the stock price on that day
+
   day_combinations = hash.keys.combination(2)
+
+  # produces an array with all possible buy/sell day combinations
 
   hash_new = Hash.new
 
   day_combinations.each do |k|
 
-    hash_new[hash[k[1]]-hash[k[0]]] = k
+    hash_new[hash[k[1]]-hash[k[0]]] = k 
   end
 
-  max = hash_new.keys.sort.last
+  # produces a hash where each key is the profit and 
+  # the value is the buy/sell day combo producing it
+
+  max = hash_new.keys.max
+
+  #find the max profit
 
   combo = hash_new[max]
+
+  # finds the buy/sell combo that creates the max profit
 
   return ["buy_day: #{combo[0]}", "sell_day: #{combo[1]}"]
 

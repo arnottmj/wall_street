@@ -7,13 +7,12 @@ def max_profit stock_prices
   possible_profits = Hash.new
 
   day_combinations.each do |day_combo|
-    possible_profits[prices_indexed_by_day[day_combo[1]]- prices_indexed_by_day[day_combo[0]]] = day_combo 
+    possible_profits[prices_indexed_by_day[day_combo[1]] - prices_indexed_by_day[day_combo[0]]] = day_combo 
   end
 
   maximum_profit = possible_profits.keys.max
 
   most_profitable_buy_sell_combo = possible_profits[maximum_profit]
-
 
   ["buy_day: #{most_profitable_buy_sell_combo[0]}",
   "sell_day: #{most_profitable_buy_sell_combo[1]}"]
